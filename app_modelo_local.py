@@ -2,8 +2,8 @@ import streamlit as st
 from llama_cpp import Llama
 
 # Load the local LLaMA model
-#MODEL_PATH ="/home/luisja/programming/llm_models/models/llama-2-7b.Q4_K_M.gguf"
-MODEL_PATH="/home/luisja/programming/llm_models/models/deepseek-coder-6.7b-instruct.Q5_K_S.gguf"
+#MODEL_PATH ="../models/llama-2-7b.Q4_K_M.gguf"
+MODEL_PATH="../models/deepseek-coder-6.7b-instruct.Q5_K_S.gguf"
 
 llm = Llama(model_path=MODEL_PATH,                   
             chat_format="llama-2"
