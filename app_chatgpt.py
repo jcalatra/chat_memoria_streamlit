@@ -1,18 +1,44 @@
 import streamlit as st
 import os
-from openai import OpenAI
+#from openai import OpenAI
+from huggingface_hub import InferenceClient
 from dotenv import load_dotenv
 
+# Variables
+TOKENS_MAXIMOS = 2500
+
+
 load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-#st.write(OPENAI_API_KEY)
+# List of models
+# OpenAI model
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# llm = OpenAI(api_key=OPENAI_API_KEY)
+# modelo = "gpt-4o-mini"
 
-llm = OpenAI(api_key=OPENAI_API_KEY)
+# Hugginface model
+HF_API_KEY = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 
+if not HF_API_KEY:
+    HF_API_KEY = st.text_input("HF_API_TOKEN", value=None, type="password")
+
+llm = InferenceClient(
+	provider="together",
+	api_key=HF_API_KEY
+)
+modelo = "deepseek-ai/DeepSeek-R1"
+
+# Hugginface model
+# HF_API_KEY = os.getenv("HUGGINGFACEHUB_API_TOKEN")
+# print(HF_API_KEY)
+# llm = InferenceClient(
+# 	provider="sambanova",
+# 	api_key=HF_API_KEY
+# )
+# modelo = "meta-llama/Llama-3.3-70B-Instruct"
 
 # Streamlit UI
-st.title("Chat with Gpt-4o-mini")
+st.title(f"Chat with {modelo}")
 
 # Initialize session state for chat history if not already present
 if "chat_history" not in st.session_state:
@@ -35,9 +61,9 @@ if user_input:
     try:
         # Generate response from GPT-4o-mini
         response = llm.chat.completions.create(
-                    model="gpt-4o-mini",
+                    model=modelo,
                     messages=st.session_state.chat_history, 
-                    max_tokens=248
+                    max_tokens=TOKENS_MAXIMOS
                     )
         #st.write(response)
         #bot_reply = response['choices'][0]["message"]["content"].strip()
