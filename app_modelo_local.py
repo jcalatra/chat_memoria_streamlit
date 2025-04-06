@@ -23,18 +23,18 @@ from huggingface_hub import hf_hub_download
 st.title("Chat with a local LLM")
 
 
-# Another way to obtain the model
-
 # List of models
 nombres_modelos = [
     "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF", 
     "unsloth/DeepSeek-R1-Distill-Llama-8B-GGUF",
-    "TheBloke/Mistral-7B-Instruct-v0.1-GGUF"
+    "TheBloke/Mistral-7B-Instruct-v0.1-GGUF",
+    "bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF",
     ]
 ficheros_modelos = [
     "Meta-Llama-3.1-8B-Instruct-Q6_K.gguf", 
     "DeepSeek-R1-Distill-Llama-8B-Q6_K.gguf",
-    "mistral-7b-instruct-v0.1.Q5_K_M.gguf"
+    "mistral-7b-instruct-v0.1.Q5_K_M.gguf",
+    "Qwen2.5.1-Coder-7B-Instruct-Q4_K_S.gguf",
 ]
 
 # Seleccionar modelo
